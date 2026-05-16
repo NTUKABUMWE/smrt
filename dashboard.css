@@ -1,0 +1,93 @@
+<?php
+
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "DHT_db";
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    die("Database connection failed");
+}
+
+$sel = mysqli_query($conn, "SELECT * FROM DHT_db");
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Motion Data</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        table{
+            border-collapse: collapse;
+            width: 70%;
+            margin: auto;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        th{
+            background: #007BFF;
+            color: white;
+            padding: 10px;
+        }
+
+        td{
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(even){
+            background: #f2f2f2;
+        }
+
+        h2{
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h2>Motion Detection Data</h2>
+
+<?php
+if($sel && mysqli_num_rows($sel) > 0){
+?>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>motion_detected</th>
+        <th>TIMESTAMP</th>
+    </tr>
+
+<?php
+while($raws = mysqli_fetch_array($sel)){
+?>
+<tr>
+    <td><?php echo $raws['Id']; ?></td>
+    <td><?php echo $raws['motion_detected']; ?></td>
+    <td><?php echo $raws['timestamp']; ?></td>
+</tr>
+<?php } ?>
+
+</table>
+<?php
+}
+else{
+    echo "<p style='text-align:center;'>no data available in database</p>";
+}
+?>
+
+</body>
+</html>

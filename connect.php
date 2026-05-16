@@ -2,7 +2,7 @@
 $host="localhost";
 $user="root";
 $pass="";
-$db="Motion_db";
+$db="DHT_db";
 
 $conn=mysqli_connect($host,$user,$pass,$db);
 
@@ -19,7 +19,7 @@ if ($data){
 
     $distance=$data["INtera"];
 
-    $insert=mysqli_query($conn,"insert into Motion_data(motion_detected) values('$distance')");
+    $insert=mysqli_query($conn,"insert into DHT_data(temperature) values('$tempereture','$humidity')");
 
     if ($insert){
         echo "data inserted successfully";
