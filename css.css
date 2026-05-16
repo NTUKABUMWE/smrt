@@ -75,7 +75,7 @@ if($sel && mysqli_num_rows($sel) > 0){
 while($raws = mysqli_fetch_array($sel)){
 ?>
 <tr>
-    <td><?php echo $raws['id']; ?></td>
+    <td><?php echo $raws['Id']; ?></td>
     <td><?php echo $raws['motion_detected']; ?></td>
     <td><?php echo $raws['timestamp']; ?></td>
 </tr>
